@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poster Bazzar</title>
+    <!-- navbarlinks -->
+    <link rel="stylesheet" href="/static/css/navbar.css">
+    <!-- sliderlinks -->
+    <link rel="stylesheet" href="/static/css/imageslider.css">
+    <!-- categorylinks -->
+    <link rel="stylesheet" href="/static/css/category.css">
+    <!-- footerlinks -->
+    <link rel="stylesheet" href="/static/css/footer.css">
+    <!-- shoplinks -->
+    <link rel="stylesheet" href="/static/css/shop.css">
+    <!-- loginlinks -->
+    <link rel="stylesheet" href="/static/css/login.css">
+    <!-- loginlinks -->
+    <link rel="stylesheet" href="/static/css/product.css">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+    <!-- Cart JavaScript -->
+    <script src="/static/js/cart.js"></script>
+</head>
+
+<body>
+    <marquee class="mar1" direction="right" scrollamount="12">FREE SHIPING ON ORDERS ABOVE 499/-</marquee>
+    <div id="navbar">
+        <nav class="nav1">
+            <ul>
+                <div class="webname">
+                    <a href="/"> Poster Bazzar</a>
+                </div>
+                <div class="login">
+                    {% if user.is_authenticated %}
+                    <button onclick="logindrop()" class="logindropbtn" ><i onclick="logindrop()" class="fab fa-angellist"></i></button>
+                    {% else %}
+                    <a href="/login"> <i class="fas fa-circle-user"></i></a>
+                    {% endif %}
+                </div>
+                <div class="login">
+                    <a href="/cart/" class="cart-header"> 
+                        <i class="fas fa-cart-shopping"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+
+
+                <li class="{% if request.path == '/shop/' %} active {% endif %}"><a href="/shop">SHOP</a></li>
+                <li class="{% if request.path == '/' %} active {% endif %}"><a href="/">HOME</a></li>
+                <div class="search-div">
+                    <form action="/shop/" method="get">
+                      <input class="search" type="search" name="query" required placeholder="Search">
+                      <button type="submit" class="searchbtn"><svg width="20" height="20" viewBox="0 0 17 18" class="" xmlns="http://www.w3.org/2000/svg"><g fill="#000000" fill-rule="evenodd"><path class="_34RNph" d="m11.618 9.897l4.225 4.212c.092.092.101.232.02.313l-1.465 1.46c-.081.081-.221.072-.314-.02l-4.216-4.203"></path><path class="_34RNph" d="m6.486 10.901c-2.42 0-4.381-1.956-4.381-4.368 0-2.413 1.961-4.369 4.381-4.369 2.42 0 4.381 1.956 4.381 4.369 0 2.413-1.961 4.368-4.381 4.368m0-10.835c-3.582 0-6.486 2.895-6.486 6.467 0 3.572 2.904 6.467 6.486 6.467 3.582 0 6.486-2.895 6.486-6.467 0-3.572-2.904-6.467-6.486-6.467"></path></g></svg></button>
+                    </form>
+                </div>
+            </ul>
+        </nav>
+    </div>
+    <div id="logindropdown" class="logindropmenu">
+        <div class="loginhello">
+            Hello!, <strong>{{user.first_name}}</strong>
+        </div>
+        <a href="/cart/"><i class="fas fa-cart-shopping"></i>My cart</a>
+        <a href="">My Account</a>
+        <a href="/logout">Logout</a>
+    </div>

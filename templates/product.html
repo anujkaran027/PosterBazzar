@@ -1,0 +1,298 @@
+{% include 'header.html' %}
+
+{% block main %}
+
+<div class="productpage-main">
+    <div class="productpage-image">
+        <img src="/media/{{products.image}}" alt="">
+    </div>
+    <div class="productpage-allinfo">
+        <div class="productpage-name">
+            {{products.name}}
+        </div>
+        <div class="productpage-price">
+            {{products.getdiscountedprice}}
+            {% if products.originalprice %}
+                <span class="original-price">{{products.getoriginalprice}}</span>
+                <span class="discount-percent">{{products.getdiscountedpercent}}</span>
+            {% endif %}
+        </div>
+        
+        <div class="productpage-quantity">
+            <label for="quantity">Quantity:</label>
+            <div class="quantity-controls">
+                <button class="quantity-btn minus" onclick="decreaseQuantity()">-</button>
+                <input type="number" id="quantity" value="1" min="1" max="99">
+                <button class="quantity-btn plus" onclick="increaseQuantity()">+</button>
+            </div>
+        </div>
+        
+        <div class="productpage-actions">
+            <button class="productpage-options add-to-cart" onclick="addToCart({{products.id}})">Add to cart</button>
+            <button class="productpage-options buy-now" onclick="buyNow({{products.id}})">Buy Now</button>
+        </div>
+
+        <div class="productpage-desp">
+            Description:<br>
+            {{ products.description }}
+        </div>
+    </div>
+
+</div>
+
+
+
+{% endblock  %}
+
+{% include 'footer.html' %}
+
+<style>
+.productpage-quantity {
+    margin: 20px 0;
+}
+
+.productpage-quantity label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    width: fit-content;
+}
+
+.quantity-btn {
+    background: #f8f9fa;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.quantity-btn:hover {
+    background: #e9ecef;
+}
+
+.quantity-btn.minus {
+    border-right: 1px solid #ddd;
+}
+
+.quantity-btn.plus {
+    border-left: 1px solid #ddd;
+}
+
+.quantity-controls input {
+    border: none;
+    padding: 10px;
+    text-align: center;
+    width: 60px;
+    font-size: 16px;
+}
+
+.productpage-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.productpage-options {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.add-to-cart {
+    background: #28a745;
+    color: white;
+}
+
+.add-to-cart:hover {
+    background: #218838;
+}
+
+.buy-now {
+    background: #007bff;
+    color: white;
+}
+
+.buy-now:hover {
+    background: #0056b3;
+}
+
+.original-price {
+    text-decoration: line-through;
+    color: #999;
+    margin-left: 10px;
+}
+
+.discount-percent {
+    color: #dc3545;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.success-message {
+    background: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border-radius: 4px;
+    margin: 10px 0;
+    display: none;
+}
+
+.error-message {
+    background: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 4px;
+    margin: 10px 0;
+    display: none;
+}
+</style>
+
+<script>
+function increaseQuantity() {
+    const quantityInput = document.getElementById('quantity');
+    const currentValue = parseInt(quantityInput.value);
+    if (currentValue < 99) {
+        quantityInput.value = currentValue + 1;
+    }
+}
+
+function decreaseQuantity() {
+    const quantityInput = document.getElementById('quantity');
+    const currentValue = parseInt(quantityInput.value);
+    if (currentValue > 1) {
+        quantityInput.value = currentValue - 1;
+    }
+}
+
+function addToCart(productId) {
+    const quantity = document.getElementById('quantity').value;
+    
+    fetch(`/cart/add/${productId}/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-CSRFToken': getCookie('csrftoken'),
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        body: `quantity=${quantity}`
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.success) {
+            showMessage('success', data.message);
+            updateCartCount();
+        } else {
+            showMessage('error', data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        showMessage('error', 'Error adding item to cart');
+    });
+}
+
+function buyNow(productId) {
+    const quantity = document.getElementById('quantity').value;
+    
+    // Add to cart first
+    fetch(`/cart/add/${productId}/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-CSRFToken': getCookie('csrftoken'),
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        body: `quantity=${quantity}`
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.success) {
+            // Redirect to cart page
+            window.location.href = '/cart/';
+        } else {
+            showMessage('error', data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        showMessage('error', 'Error adding item to cart');
+    });
+}
+
+
+function showMessage(type, message) {
+    // Remove existing messages
+    const existingMessages = document.querySelectorAll('.success-message, .error-message');
+    existingMessages.forEach(msg => msg.remove());
+    
+    // Create new message
+    const messageDiv = document.createElement('div');
+    messageDiv.className = type === 'success' ? 'success-message' : 'error-message';
+    messageDiv.textContent = message;
+    messageDiv.style.display = 'block';
+    
+    // Insert after product actions
+    const actionsDiv = document.querySelector('.productpage-actions');
+    actionsDiv.parentNode.insertBefore(messageDiv, actionsDiv.nextSibling);
+    
+    // Auto-hide after 3 seconds
+    setTimeout(() => {
+        messageDiv.remove();
+    }, 3000);
+}
+
+function updateCartCount() {
+    fetch('/cart/count/')
+    .then(response => response.json())
+    .then(data => {
+        // Update cart count in navbar if it exists
+        const cartCountElement = document.querySelector('.cart-count');
+        if (cartCountElement) {
+            cartCountElement.textContent = data.count;
+        }
+    })
+    .catch(error => {
+        console.error('Error updating cart count:', error);
+    });
+}
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+</script>

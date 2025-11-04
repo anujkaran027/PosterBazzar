@@ -1,0 +1,56 @@
+{% extends 'frame.html' %}
+
+{% block main %}
+
+<div class="shop-heading">
+  <span class="shop-heading-span"> POSTERS</span>
+</div>
+<div class="filter-product">
+  <div class="filters">
+    
+      <div class="filters-block">
+      <div class="filter-head">Category </div>
+      <div class="filter-content">
+        <a href="/shop">All Products </a>
+      {% for category in categories %}
+      <a href="/shop?category={{category.id}}" > {{category.category_name}} </a>
+      {% endfor %}
+        </div>
+      </div>
+  </div>
+
+  <div class="products">
+
+      {% for item in items %}
+
+      <div class="product-info">
+          <a href="/shop/{{item.id}}"><img src="/media/{{item.image}}" alt=""></a>
+          <div class="imgcate-product">
+              <span class="imgcate-product-bg"><a href="/shop/{{item.id}}"> {{item.category.category_name}} </a></span>
+          </div>
+          <div class="product-name">
+              <a href="/shop/{{item.id}}"> {{item.name}} </a>
+          </div>
+          <div class="product-price">
+              <span class="offer-price"><a href="/shop/{{item.id}}"> {{item.getdiscountedprice}} </a></span>
+              <span class="original-price"><a href="/shop/{{item.id}}"> {{item.getoriginalprice}} </a></span>
+              <span class="discount-percent"><a href="/shop/{{item.id}}"> {{item.getdiscountedpercent}} </a></span>
+          </div>
+        </div>
+
+        {% endfor %}
+
+      </div>
+      </div>
+      
+
+{% comment %} <nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="#">&#10094; Previous</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">Next &#10095;</a></li>
+  </ul>
+</nav> {% endcomment %}
+{% endblock  %}

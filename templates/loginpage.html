@@ -1,0 +1,53 @@
+{% extends 'frame.html' %}
+
+{% block main %}
+
+<section class="area-main">
+    <div class="main-box">
+        <div class="textud">
+            Log in to Anime Bazzar
+        </div>
+    <form action="/login/" method="POST">
+    {% csrf_token %}
+        <div class="textlog">
+            Phone number or Email
+        </div>
+        <input type="text" name="username" class="userbox" placeholder="Email">
+        <div class="textlog">
+            Password
+        </div>
+        <input type="Password" name="pass1" class="userbox" placeholder="Password">
+        <button type="submit" class="loginbtn">Log IN</button>
+
+    </form>
+        <div class="textud">
+            Don't have an account? <a href="/signup">create account</a>
+        </div>
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            <strong>Message:</strong> {{message}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        <div>
+        {% endfor %}
+    </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock main %}

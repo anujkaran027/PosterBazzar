@@ -1,0 +1,32 @@
+{% extends 'frame.html' %}
+
+{% block main %}
+
+    <div class="slider">
+        {% for n in slider_images %}
+        <div class="slide">
+            <img src="media/{{n}}" alt="">
+        </div>
+        {% endfor %} 
+
+        <span class="arrow-prev" onclick="change(-1)">&#10094;</span>
+        <span class="arrow-next" onclick="change(1)">&#10095;</span>
+    </div>
+
+
+    <div class="heading">
+        <center><h1>CATEGORIES</h1></center>
+    </div>
+    <div class="category">
+      {% for n in cate_images %}
+      <div class="cate-img">
+        <img src="media/{{n}}" alt="">
+      </div>
+      {% endfor %}
+
+    </div>
+      <div class="big-img">
+        <img src="/static/image/poster.webp" alt="">
+      </div>
+
+  {% endblock  %}

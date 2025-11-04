@@ -1,0 +1,160 @@
+
+
+.area-main{
+    display: flex;
+    width: 100%;
+    height: 60rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-box{
+    display: flex;
+    flex-direction: column;
+    width: 45rem;
+    height: 45rem;
+    border-radius: 1rem;
+    background-color: rgb(212, 198, 198);
+}
+
+.signmain-box{
+    display: flex;
+    flex-direction: column;
+    width: 40rem;
+    height: 55rem;
+    border-radius: 1rem;
+    background-color: rgb(212, 198, 198);
+    margin-top: 5rem;
+}
+
+.textlog{
+    font-size: 2.5rem;
+    height: 4rem;
+    padding-top: 1rem;
+    padding-left: 5rem;
+}
+
+.userbox{
+    font-size: 2rem;
+    height: 4rem;
+    border-radius: 1rem;
+    width: 35rem;
+    margin-left: 5rem;
+}
+
+.textud{
+    font-size: 2.5rem;
+    text-align: center;
+    height: 4rem;
+    padding-top: 1rem;
+    margin-top: 3rem;
+}
+
+.loginbtn{
+    font-size: 2rem;
+    height: 4rem;
+    width: 35rem;
+    border-radius: 1rem;
+    margin-left: 5rem;
+    margin-top: 4rem;
+    background-color: rgb(161, 2, 2);
+}
+
+.newuserbox{
+    font-size: 2rem;
+    height: 4rem;
+    width: 35rem;
+    border-radius: .5rem;
+    margin-left: 3rem;
+    margin-top: 1rem;
+}
+
+.signupbtn{
+    font-size: 2rem;
+    font-weight: bolder;
+    color: white;
+    height: 4rem;
+    width: 20rem;
+    margin-top: 3rem;
+    margin-left: 10rem;
+    border-radius: 1rem;
+    background-color: green;
+}
+
+/* After login profile icon header page */
+
+.logindropmenu{
+    display: none;
+    float: left;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 16rem;
+    box-shadow: 0rem .8rem 1.6rem 0rem rgba(0,0,0,0.2);
+    z-index: 4;
+    margin-left: 123rem;
+    margin-top: 2.8rem;
+    border-radius: 1rem;
+    height: 38rem;
+    width: 28rem;
+}
+
+.logindropbtn{
+    font-size: 4rem;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.logindropbtn i{
+    pointer-events: none;
+}
+
+.logindropmenu a{
+    color: black;
+    padding: 1.2rem 1.6rem;
+    text-decoration: none;
+    display: block;
+    font-size: 3rem;
+}
+
+.logindropmenu a:hover{
+    background-color: #ddd;
+}
+
+.loginhello{
+    padding: 1.2rem 1.6rem;
+    font-size: 3rem;
+    background-color: #f1f1f1;
+}
+
+.showlogindrop{
+    display: block;
+}
+
+
+.searchbtn{
+    position: absolute;
+	font-size: 3.5rem;
+    top: 2.9rem;
+    width: 4.5rem;
+    cursor: pointer;
+    right: 56rem;
+    height: 4.2rem;
+}
+
+.search {
+	position: absolute;
+	background-color: white;
+	outline: none;
+	border: none;
+	width: 40rem;
+	z-index: 10;
+    height: 4rem;
+    padding: 0 0 0 16px;
+    right: 60.5rem;
+    top: 3rem;
+}
+
+
+.cart-header{
+    font-size: 3rem;
+}

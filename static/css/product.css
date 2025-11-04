@@ -1,0 +1,57 @@
+
+
+.productpage-main{
+    width: 165.5rem;
+    margin-left: 5rem;
+    margin-top: 5rem;
+    height: 100rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.productpage-image{
+    width: 55%;
+    overflow: hidden;
+}
+
+.productpage-image img{
+    width: 90%;
+    margin-left: 5%;
+    height: 90%;
+    margin-top: 5%;
+}
+
+.productpage-allinfo{
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    border: .5rem solid black;
+}
+
+.productpage-name{
+    font-size: 4rem;
+    width: 100%;
+    height: 8rem;
+}
+
+.productpage-price{
+    font-size: 3rem;
+    width: 100%;
+    height: 16rem;
+    margin-top: 2rem;
+}
+
+.productpage-options{
+    width: 37rem;
+    height: 6rem;
+    margin-left: 20rem;
+    margin-top: 3rem;
+}
+
+.productpage-desp{
+    font-size: 3rem;
+    width: 100%;
+    color: white;
+    background-color: black;
+    margin-top: 3rem;
+}

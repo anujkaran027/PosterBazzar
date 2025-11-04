@@ -1,0 +1,32 @@
+.slider{
+    width: 100%;
+    height: 48.5rem;
+    position: relative;
+}
+.slider img{
+    width: 100%;
+    height: 48.5rem;
+}
+.slide{
+    display: none;
+}
+.arrow-prev{
+   cursor: pointer;
+   position: absolute;
+   top: 40%;
+   left: 0.6%;
+   color: white;
+   background-color: transparent;
+   padding: 1rem;
+   font-size: 6rem;
+}
+.arrow-next{
+    cursor: pointer;
+    position: absolute;
+    top: 40%;
+    left: 96%;
+    color: white;
+    background-color: transparent;
+    padding: 1rem;
+    font-size: 6rem;
+}
