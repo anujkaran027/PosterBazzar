@@ -91,12 +91,11 @@ python manage.py runserver
 
 ## Screenshots
 
-
 ### 1. Home
-![Home]()
+![Home](https://github.com/anujkaran027/PosterBazzar/blob/7a27c39d9e23e0078bb0ab818d9ca91da142e932/screenshots/Home.png)
 
 ### 2. Cart
-![cart]()
+![cart](https://github.com/anujkaran027/PosterBazzar/blob/7a27c39d9e23e0078bb0ab818d9ca91da142e932/screenshots/cart.png)
 
 ### 3. Footer
-![Footer]()
+![Footer](https://github.com/anujkaran027/PosterBazzar/blob/7a27c39d9e23e0078bb0ab818d9ca91da142e932/screenshots/Footer.png)
