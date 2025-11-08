@@ -86,3 +86,17 @@ python manage.py runserver
 ## **IMPORTANT**
 
 >The project has many bugs and security issues. (Not recommended for production)
+
+---
+
+## Screenshots
+
+
+### 1. Home
+![Home]()
+
+### 2. Cart
+![cart]()
+
+### 3. Footer
+![Footer]()
